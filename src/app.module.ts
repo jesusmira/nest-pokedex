@@ -15,6 +15,8 @@ import { JoiValidationSchema } from './config/joi.vaidation';
   imports: [
     ConfigModule.forRoot({
        load: [ EnvConfiguration ],
+       envFilePath: '.env', // Define la ruta correcta de tu archivo .env
+       isGlobal: true,
        validationSchema: JoiValidationSchema,
     }),
     ServeStaticModule.forRoot({ 
@@ -29,4 +31,9 @@ import { JoiValidationSchema } from './config/joi.vaidation';
 
   ], 
  })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    console.log('MONGODB:', process.env.MONGODB);
+
+  }
+}
